@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完整共产党宣言 | Complete Communist Manifesto</title>
+    <style>
+        :root {
+            --primary-red: #c62f2f;
+            --dark-red: #a51c30;
+            --light-red: #e57373;
+            --gold: #ffd700;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--dark-red), var(--primary-red));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: var(--primary-red);
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid white;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: var(--primary-red);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chapter-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .chapter-link {
+            display: block;
+            padding: 1.5rem;
+            background: white;
+            border-left: 4px solid var(--primary-red);
+            text-decoration: none;
+            color: var(--dark-gray);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .chapter-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .chapter-link h3 {
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+        }
+        
+        .manifesto-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            min-height: 500px;
+        }
+        
+        .manifesto-content h2 {
+            color: var(--dark-red);
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--light-red);
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .content-column {
+            padding: 1rem;
+        }
+        
+        .content-column h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .content-text {
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--medium-gray);
+        }
+        
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-area {
+                grid-template-columns: 1fr;
+            }
+            
+            .chapter-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="language-switcher">
+            <button class="lang-btn active" id="en-btn">EN</button>
+            <button class="lang-btn" id="zh-btn">繁體中文</button>
+        </div>
+        <div class="container">
+            <h1 lang="en">The Communist Manifesto</h1>
+            <h1 lang="zh" style="display:none;">共產黨宣言</h1>
+            <p lang="en">By Karl Marx and Friedrich Engels</p>
+            <p lang="zh" style="display:none;">作者：卡爾·馬克思和弗里德里希·恩格斯</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 章节列表页面 -->
+        <div id="chapter-list">
+            <h2 class="section-title" lang="en">Chapters</h2>
+            <h2 class="section-title" lang="zh" style="display:none;">章節目錄</h2>
+            
+            <div class="chapter-links">
+                <a href="#" class="chapter-link" data-chapter="preface">
+                    <h3 lang="en">Preface</h3>
+                    <h3 lang="zh" style="display:none;">前言</h3>
+                    <p lang="en">Introduction to the Communist Manifesto</p>
+                    <p lang="zh" style="display:none;">共產黨宣言簡介</p>
+                </a>
+                
+                <a href="#" class="chapter-link" data-chapter="chapter1">
+                    <h3 lang="en">Chapter 1: Bourgeois and Proletarians</h3>
+                    <h3 lang="zh" style="display:none;">第一章：資產者和無產者</h3>
+                    <p lang="en">The history of class struggles</p>
+                    <p lang="zh" style="display:none;">階級鬥爭的歷史</p>
+                </a>
+                
+                <a href="#" class="chapter-link" data-chapter="chapter2">
+                    <h3 lang="en">Chapter 2: Proletarians and Communists</h3>
+                    <h3 lang="zh" style="display:none;">第二章：無產者和共產黨人</h3>
+                    <p lang="en">The role of Communists in the proletarian movement</p>
+                    <p lang="zh" style="display:none;">共產黨人在無產階級運動中的作用</p>
+                </a>
+                
+                <a href="#" class="chapter-link" data-chapter="chapter3">
+                    <h3 lang="en">Chapter 3: Socialist and Communist Literature</h3>
+                    <h3 lang="zh" style="display:none;">第三章：社會主義的和共產主義的文獻</h3>
+                    <p lang="en">Critical analysis of various socialist systems</p>
+                    <p lang="zh" style="display:none;">對各種社會主義體系的批判分析</p>
+                </a>
+                
+                <a href="#" class="chapter-link" data-chapter="chapter4">
+                    <h3 lang="en">Chapter 4: Position in Relation to Opposition Parties</h3>
+                    <h3 lang="zh" style="display:none;">第四章：對各種反對黨派的態度</h3>
+                    <p lang="en">Communist tactics in various countries</p>
+                    <p lang="zh" style="display:none;">在各國的共產主義策略</p>
+                </a>
+            </div>
+        </div>
+        
+        <!-- 内容显示区域 -->
+        <div id="content-display" style="display:none;">
+            <div class="manifesto-content">
+                <h2 id="chapter-title-en">Chapter Title</h2>
+                <h2 id="chapter-title-zh" style="display:none;">章節標題</h2>
+                
+                <div class="content-area">
+                    <div class="content-column">
+                        <h3 lang="en">English Version</h3>
+                        <h3 lang="zh" style="display:none;">英文版本</h3>
+                        <div class="content-text" id="english-content">
+                            <div class="loading" lang="en">Loading content...</div>
+                            <div class="loading" lang="zh" style="display:none;">加載內容中...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-column">
+                        <h3 lang="en">Chinese Version</h3>
+                        <h3 lang="zh" style="display:none;">中文版本</h3>
+                        <div class="content-text" id="chinese-content">
+                            <div class="loading" lang="en">Loading content...</div>
+                            <div class="loading" lang="zh" style="display:none;">加載內容中...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p lang="en">"Workers of the world, unite!" - The Communist Manifesto</p>
+            <p lang="zh" style="display:none;">「全世界無產者，聯合起來！」 - 《共產黨宣言》</p>
+        </div>
+    </footer>
+
+    <script>
+        // 语言切换功能
+        document.getElementById('en-btn').addEventListener('click', function() {
+            switchLanguage('en');
+        });
+        
+        document.getElementById('zh-btn').addEventListener('click', function() {
+            switchLanguage('zh');
+        });
+        
+        function switchLanguage(lang) {
+            // 更新活动按钮
+            document.getElementById('en-btn').classList.toggle('active', lang === 'en');
+            document.getElementById('zh-btn').classList.toggle('active', lang === 'zh');
+            
+            // 显示/隐藏语言特定内容
+            const enElements = document.querySelectorAll('[lang="en"]');
+            const zhElements = document.querySelectorAll('[lang="zh"]');
+            
+            // 检查当前是否在内容显示页面
+            const isContentPage = document.getElementById('content-display').style.display !== 'none';
+            
+            if (lang === 'en') {
+                enElements.forEach(el => {
+                    // 如果是返回按钮，只在内容页面显示
+                    if (el.classList.contains('back-btn')) {
+                        el.style.display = isContentPage ? 'block' : 'none';
+                    } else {
+                        el.style.display = 'block';
+                    }
+                });
+                zhElements.forEach(el => {
+                    // 如果是返回按钮，只在内容页面显示
+                    if (el.classList.contains('back-btn')) {
+                        el.style.display = 'none';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+                
+                // 更新章节标题显示
+                updateChapterTitleDisplay(lang);
+            } else {
+                enElements.forEach(el => {
+                    // 如果是返回按钮，只在内容页面显示
+                    if (el.classList.contains('back-btn')) {
+                        el.style.display = 'none';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+                zhElements.forEach(el => {
+                    // 如果是返回按钮，只在内容页面显示
+                    if (el.classList.contains('back-btn')) {
+                        el.style.display = isContentPage ? 'block' : 'none';
+                    } else {
+                        el.style.display = 'block';
+                    }
+                });
+                
+                // 更新章节标题显示
+                updateChapterTitleDisplay(lang);
+            }
+        }
+        
+        // 更新章节标题显示
+        function updateChapterTitleDisplay(lang) {
+            if (document.getElementById('content-display').style.display !== 'none') {
+                if (lang === 'en') {
+                    document.getElementById('chapter-title-en').style.display = 'block';
+                    document.getElementById('chapter-title-zh').style.display = 'none';
+                } else {
+                    document.getElementById('chapter-title-en').style.display = 'none';
+                    document.getElementById('chapter-title-zh').style.display = 'block';
+                }
+            }
+        }
+        
+        // 章节链接点击事件
+        document.querySelectorAll('.chapter-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.getAttribute('data-chapter');
+                loadChapter(chapter);
+            });
+        });
+        
+        // 显示章节列表
+        function showChapterList() {
+            document.getElementById('chapter-list').style.display = 'block';
+            document.getElementById('content-display').style.display = 'none';
+            
+            // 隐藏所有返回按钮
+            document.querySelectorAll('.back-btn').forEach(btn => {
+                btn.style.display = 'none';
+            });
+            
+            // 切换语言以更新界面显示
+            const currentLang = document.getElementById('en-btn').classList.contains('active') ? 'en' : 'zh';
+            switchLanguage(currentLang);
+        }
+        
+        // 加载章节内容
+        function loadChapter(chapter) {
+            // 显示内容区域
+            document.getElementById('chapter-list').style.display = 'none';
+            document.getElementById('content-display').style.display = 'block';
+            
+            // 设置章节标题
+            const chapterTitles = {
+                'preface': { en: 'Preface', zh: '前言' },
+                'chapter1': { en: 'Chapter 1: Bourgeois and Proletarians', zh: '第一章：資產者和無產者' },
+                'chapter2': { en: 'Chapter 2: Proletarians and Communists', zh: '第二章：無產者和共產黨人' },
+                'chapter3': { en: 'Chapter 3: Socialist and Communist Literature', zh: '第三章：社會主義的和共產主義的文獻' },
+                'chapter4': { en: 'Chapter 4: Position in Relation to Opposition Parties', zh: '第四章：對各種反對黨派的態度' }
+            };
+            
+            document.getElementById('chapter-title-en').textContent = chapterTitles[chapter].en;
+            document.getElementById('chapter-title-zh').textContent = chapterTitles[chapter].zh;
+            
+            // 根据当前语言显示正确的标题和返回按钮
+            const currentLang = document.getElementById('en-btn').classList.contains('active') ? 'en' : 'zh';
+            updateChapterTitleDisplay(currentLang);
+            
+            // 显示正确的返回按钮
+            document.querySelectorAll('.back-btn').forEach(btn => {
+                if (btn.lang === currentLang) {
+                    btn.style.display = 'block';
+                } else {
+                    btn.style.display = 'none';
+                }
+            });
+            
+            // 加载英文内容
+            fetch(`${chapter}-en.txt`)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('english-content').innerHTML = `<p>${text.replace(/\n/g, '</p><p>')}</p>`;
+                })
+                .catch(error => {
+                    document.getElementById('english-content').innerHTML = '<p>Error loading English content.</p>';
+                });
+            
+            // 加载中文内容
+            fetch(`${chapter}-zh.txt`)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('chinese-content').innerHTML = `<p>${text.replace(/\n/g, '</p><p>')}</p>`;
+                })
+                .catch(error => {
+                    document.getElementById('chinese-content').innerHTML = '<p>加载中文内容时出错。</p>';
+                });
+        }
+        
+        // 创建返回按钮并添加到header
+        const backBtnEn = document.createElement('a');
+        backBtnEn.href = '#';
+        backBtnEn.className = 'back-btn';
+        backBtnEn.id = 'back-btn';
+        backBtnEn.lang = 'en';
+        backBtnEn.textContent = 'Back to Chapters';
+        backBtnEn.style.display = 'none';
+        
+        const backBtnZh = document.createElement('a');
+        backBtnZh.href = '#';
+        backBtnZh.className = 'back-btn';
+        backBtnZh.id = 'back-btn-zh';
+        backBtnZh.lang = 'zh';
+        backBtnZh.textContent = '返回章節目錄';
+        backBtnZh.style.display = 'none';
+        
+        document.querySelector('header').appendChild(backBtnEn);
+        document.querySelector('header').appendChild(backBtnZh);
+        
+        // 返回按钮点击事件
+        backBtnEn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showChapterList();
+        });
+        
+        backBtnZh.addEventListener('click', function(e) {
+            e.preventDefault();
+            showChapterList();
+        });
+        
+        // 初始化语言
+        switchLanguage('en');
+    </script>
+</body>
+</html>
