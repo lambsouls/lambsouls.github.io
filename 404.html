@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 | Page Not Found</title>
+    <style>
+        :root {
+            --primary-red: #c62f2f;
+            --dark-red: #a51c30;
+            --light-red: #e57373;
+            --gold: #ffd700;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--dark-red), var(--primary-red));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: var(--primary-red);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .error-section {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark-gray);
+        }
+        
+        .propaganda-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .propaganda-section h2 {
+            color: var(--dark-red);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--light-red);
+            padding-bottom: 0.5rem;
+        }
+        
+        .problem-list {
+            list-style-type: none;
+            margin: 1.5rem 0;
+        }
+        
+        .problem-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+        }
+        
+        .problem-list li:before {
+            content: "•";
+            color: var(--primary-red);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .quote {
+            font-style: italic;
+            border-left: 3px solid var(--light-red);
+            padding-left: 1rem;
+            margin: 2rem 0;
+            background: rgba(229, 115, 115, 0.1);
+            padding: 1.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-red);
+        }
+        
+        .btn:hover {
+            background: white;
+            color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-red);
+            border: 2px solid var(--primary-red);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+        
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="language-switcher">
+            <button class="lang-btn active" id="en-btn">EN</button>
+            <button class="lang-btn" id="zh-btn">繁體中文</button>
+        </div>
+        <div class="container">
+            <p class="subtitle" lang="en">Why do we face student debt, unaffordable housing, healthcare crises, and systemic inequality? See how capitalism creates these problems and discover the truth that Communism has the answers.</p>
+            <p class="subtitle" lang="zh" style="display:none;">為什麼我們面臨學貸壓力、住不起房、醫療危機和系統性不平等？了解資本主義如何製造這些問題，找到只有共產主義的才能給與你的答案。</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="error-section">
+            <div class="error-code">404</div>
+            <div class="error-message" lang="en">Page Not Found</div>
+            <div class="error-message" lang="zh" style="display:none;">頁面未找到</div>
+            
+            <div class="action-buttons">
+                <a href="/" class="btn" lang="en">Back to Home</a>
+                <a href="/" class="btn" lang="zh" style="display:none;">返回首頁</a>
+                
+                <a href="https://lambsouls.github.io/manifesto/communist-manifesto/" class="btn btn-outline" lang="en">Read Communist Manifesto</a>
+                <a href="https://lambsouls.github.io/manifesto/communist-manifesto/" class="btn btn-outline" lang="zh" style="display:none;">閱讀共產黨宣言</a>
+            </div>
+        </div>
+        
+        <div class="propaganda-section">
+            <h2 lang="en">The Real Cause of Your Struggles</h2>
+            <h2 lang="zh" style="display:none;">你困境的真正原因</h2>
+            
+            <p lang="en">
+                Are you struggling with student loans that feel like a lifetime sentence? Working multiple jobs but still can't afford decent housing? Worried about medical bills that could bankrupt your family? These aren't personal failures - they're systemic features of capitalism.
+            </p>
+            <p lang="zh" style="display:none;">
+                你是否正在為感覺像終身監禁的學貸而掙扎？做多份工作卻仍然負擔不起像樣的住房？擔心醫療帳單可能讓你的家庭破產？這些不是個人的失敗——它們是資本主義的系統性特徵。
+            </p>
+            
+            <ul class="problem-list">
+                <li lang="en">Student debt: Education as a commodity, not a right</li>
+                <li lang="zh" style="display:none;">學貸：教育成為商品，而非權利</li>
+                
+                <li lang="en">Housing crisis: Profit-driven markets pricing out working people</li>
+                <li lang="zh" style="display:none;">住房危機：利潤驅動的市場使勞動人民無法負擔</li>
+                
+                <li lang="en">Healthcare inequality: Medical care for profit, not for need</li>
+                <li lang="zh" style="display:none;">醫療不平等：醫療服務為利潤而非需求</li>
+                
+                <li lang="en">Wage stagnation: Wealth flowing upward to the 1%</li>
+                <li lang="zh" style="display:none;">工資停滯：財富向上流入1%的人手中</li>
+                
+                <li lang="en">Gun violence: Symptom of a society prioritizing profit over people</li>
+                <li lang="zh" style="display:none;">槍支暴力：社會優先考慮利潤而非人民的症狀</li>
+            </ul>
+            
+            <div class="quote">
+                <p lang="en">"The history of all hitherto existing society is the history of class struggles."</p>
+                <p lang="en">- Karl Marx & Friedrich Engels, The Communist Manifesto</p>
+                
+                <p lang="zh" style="display:none;">「至今一切社會的歷史都是階級鬥爭的歷史。」</p>
+                <p lang="zh" style="display:none;">- 卡爾·馬克思 & 弗里德里希·恩格斯，《共產黨宣言》</p>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="https://lambsouls.github.io/manifesto/" class="btn" lang="en">Learn More About Communist Solutions</a>
+                <a href="https://lambsouls.github.io/manifesto/" class="btn" lang="zh" style="display:none;">了解更多共產主義解決方案</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p lang="en">"Workers of the world, unite!" - The Communist Manifesto</p>
+            <p lang="zh" style="display:none;">「全世界無產者，聯合起來！」 - 《共產黨宣言》</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('en-btn').addEventListener('click', function() {
+            switchLanguage('en');
+        });
+        
+        document.getElementById('zh-btn').addEventListener('click', function() {
+            switchLanguage('zh');
+        });
+        
+        function switchLanguage(lang) {
+            // Update active button
+            document.getElementById('en-btn').classList.toggle('active', lang === 'en');
+            document.getElementById('zh-btn').classList.toggle('active', lang === 'zh');
+            
+            // Show/hide language-specific content
+            const enElements = document.querySelectorAll('[lang="en"]');
+            const zhElements = document.querySelectorAll('[lang="zh"]');
+            
+            if (lang === 'en') {
+                enElements.forEach(el => el.style.display = 'block');
+                zhElements.forEach(el => el.style.display = 'none');
+            } else {
+                enElements.forEach(el => el.style.display = 'none');
+                zhElements.forEach(el => el.style.display = 'block');
+            }
+        }
+        
+        // Initialize with English
+        switchLanguage('en');
+        
+        // Auto-redirect to home page after 10 seconds
+        setTimeout(() => {
+            window.location.href = 'https://lambsouls.github.io/manifesto/';
+        }, 10000);
+    </script>
+</body>
+</html>
