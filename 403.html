@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訪問被拒絕 | Access Denied</title>
+    <style>
+
+        :root {
+            --primary-red: #c62f2f;
+            --dark-red: #a51c30;
+            --light-red: #e57373;
+            --gold: #ffd700;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .error-code {
+            font-size: 6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .quote {
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-left: 3px solid var(--gold);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            background: white;
+            color: var(--primary-red);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            background: var(--gold);
+        }
+        
+        /* 語言切換按鈕樣式 */
+        .language-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--gold);
+            color: var(--dark-red);
+        }
+        
+        /* 確保內容區塊正確顯示 */
+        .content-block {
+            display: block;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 語言切換按鈕 -->
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="zh">繁中</button>
+        </div>
+        
+        <div class="error-code">403</div>
+        
+        <!-- 繁體中文內容 -->
+        <div id="zh-content" class="content-block hidden">
+            <div class="message">訪問被拒絕 · 但真理無法被封鎖</div>
+            <div class="quote">
+                "資產階級在它已經取得了統治的地方把一切封建的、宗法的和田園詩般的關係都破壞了。<br>
+                它無情地斬斷了把人們束縛於天然尊長的形形色色的封建羈絆..."
+            </div>
+            <p>這個錯誤提醒我們：在階級社會裡，知識的傳播從來都不是自由的。</p>
+            <div>
+                <a href="/" class="btn">返回首頁</a>
+                <a href="https://lambsouls.github.io/manifesto/" class="btn">了解更多</a>
+            </div>
+        </div>
+        
+        <!-- 英文內容 -->
+        <div id="en-content" class="content-block">
+            <div class="message">Access Denied · But Truth Cannot Be Blocked</div>
+            <div class="quote">
+                "The bourgeoisie, wherever it has got the upper hand, has put an end to all feudal, patriarchal, idyllic relations.<br>
+                It has pitilessly torn asunder the motley feudal ties that bound man to his natural superiors..."
+            </div>
+            <p>This error reminds us: in class society, knowledge dissemination is never free.</p>
+            <div>
+                <a href="/" class="btn">Back to Home</a>
+                <a href="https://lambsouls.github.io/manifesto/" class="btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 語言切換邏輯
+        function switchLanguage(lang) {
+            // 隱藏所有內容
+            document.getElementById('zh-content').classList.add('hidden');
+            document.getElementById('en-content').classList.add('hidden');
+            
+            // 顯示選中的語言內容
+            document.getElementById(lang + '-content').classList.remove('hidden');
+            
+            // 更新按鈕狀態
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+        }
+        
+        // 添加按鈕事件監聽器
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchLanguage(btn.dataset.lang);
+            });
+        });
+        
+        // 8秒後自動重定向
+        setTimeout(() => {
+            window.location.href = 'https://lambsouls.github.io/manifesto/';
+        }, 8000);
+    </script>
+</body>
+</html>
